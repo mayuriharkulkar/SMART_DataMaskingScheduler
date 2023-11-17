@@ -33,8 +33,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,11 +58,80 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Audit.cs">
+      <DependentUpon>SMARTEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AuditContact.cs">
+      <DependentUpon>SMARTEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AuditDocument.cs">
+      <DependentUpon>SMARTEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AuditFacility.cs">
+      <DependentUpon>SMARTEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AuditQuestionnaireAttachment.cs">
+      <DependentUpon>SMARTEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DictionaryData.cs">
+      <DependentUpon>SMARTEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DictionaryType.cs">
+      <DependentUpon>SMARTEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExceptionLog.cs">
+      <DependentUpon>SMARTEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataMasking.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SMARTEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SMARTEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SMARTEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SMARTEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SMARTEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SMARTEntity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="TaskDataMaskingQueue.cs">
+      <DependentUpon>SMARTEntity.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.prod.config" />
+    <None Include="App.stage.config" />
+    <None Include="App.test.config" />
+    <None Include="App.token.config" />
     <None Include="App.config" />
+    <EntityDeploy Include="SMARTEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SMARTEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="packages.config" />
+    <None Include="SMARTEntity.edmx.diagram">
+      <DependentUpon>SMARTEntity.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SMARTEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SMARTEntity.edmx</DependentUpon>
+      <LastGenOutput>SMARTEntity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="SMARTEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SMARTEntity.edmx</DependentUpon>
+      <LastGenOutput>SMARTEntity.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
